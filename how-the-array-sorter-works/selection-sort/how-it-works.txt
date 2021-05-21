@@ -1,0 +1,2 @@
+it iterates all the array, every iteration it iterates the array from the current index to the last
+so it can take the smallest number, then it swaps the current number for the smallest number found.
