@@ -5,21 +5,21 @@ using namespace std;
 class arraySorters
 {
 public:
-    void selectionSort(int arrayToSort[], int lengthOfArrayToSort)
+    void selectionSort(int* ptr_arrayToSort, int lengthOfArrayToSort)
     {
         for(int i = 0; i < lengthOfArrayToSort; i++)
         {
-            int lesserNumberIndex = i;
+            int* ptr_lesserNumber = ptr_arrayToSort;
+            int* ptr_elementArrayToSortInJIndex = ptr_arrayToSort + 1;
             for(int j = i + 1; j < lengthOfArrayToSort; j++)
             {
-                if(arrayToSort[j] < arrayToSort[lesserNumberIndex])
-                    lesserNumberIndex = j;
+                if(*ptr_elementArrayToSortInJIndex < *ptr_lesserNumber)
+                    ptr_lesserNumber = ptr_elementArrayToSortInJIndex;
+                ptr_elementArrayToSortInJIndex++;
             }
-            swapElementsOfArray(&arrayToSort[i], &arrayToSort[lesserNumberIndex]);
+            swapElementsOfArray(ptr_arrayToSort, ptr_lesserNumber);
+            ptr_arrayToSort++;
         }
-
-        for(int i = 0; i < lengthOfArrayToSort; i++)
-            cout << arrayToSort[i] << " ";
     }
 
 private:
@@ -28,7 +28,6 @@ private:
         int temp = *ptr_element1;
         *ptr_element1 = *ptr_element2;
         *ptr_element2 = temp;
-
     }
 };
 
@@ -39,6 +38,9 @@ int main()
 
     arraySorters myObjct;
     myObjct.selectionSort(arr1, lengthOfArray);
+
+    for(int i = 0; i < lengthOfArray; i ++)
+        cout << arr1[i] << " ";
 
     return 0;
 }
