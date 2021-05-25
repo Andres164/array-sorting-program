@@ -34,7 +34,7 @@ private:
 int main()
 {
     int lengthOfArray = 6;
-    int arr1[lengthOfArray] = {2,1,3,4,6,5};
+    int arr1[lengthOfArray] = {-100,250,156,15,16,17};
 
     arraySorters myObjct;
     myObjct.selectionSort(arr1, lengthOfArray);
