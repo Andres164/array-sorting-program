@@ -1,0 +1,4 @@
+this algoritm iterates the array, every iteration it compares the current element with the
+previous one, if current element is smaller than previous element, then switch them, and so on
+until this statement is false or we get to index 0, then we continue with the next element.
+This algoritm is faster that selection sort when the array is partially arranged.

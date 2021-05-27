@@ -21,6 +21,20 @@ public:
             ptr_arrayToSort++;
         }
     }
+    void insertionSort(int* ptr_arrayToSort, int lengthOfArrayToSort)
+    {
+        int* ptr_indexZeroArrayToSort = ptr_arrayToSort;
+        for(int i = 1; i < lengthOfArrayToSort; i++)
+        {
+            ptr_arrayToSort++;
+            int* ptr_elementBeingCompared = ptr_arrayToSort;
+            while(ptr_elementBeingCompared > ptr_indexZeroArrayToSort && *ptr_elementBeingCompared < *(ptr_elementBeingCompared - 1))
+            {
+                swapElementsOfArray(ptr_elementBeingCompared, ptr_elementBeingCompared - 1);
+                ptr_elementBeingCompared--;
+            }
+        }
+    }
 
 private:
     void swapElementsOfArray(int* ptr_element1, int* ptr_element2)
@@ -34,10 +48,11 @@ private:
 int main()
 {
     int lengthOfArray = 6;
-    int arr1[lengthOfArray] = {-100,250,156,15,16,17};
+    int arr1[lengthOfArray] = {85,85,86,88,10,1};
 
     arraySorters myObjct;
-    myObjct.selectionSort(arr1, lengthOfArray);
+    myObjct.insertionSort(arr1, lengthOfArray);
+
 
     for(int i = 0; i < lengthOfArray; i ++)
         cout << arr1[i] << " ";
