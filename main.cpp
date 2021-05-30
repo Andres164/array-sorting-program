@@ -1,4 +1,6 @@
 #include<iostream>
+#include<cstring>
+#include <string>
 
 using namespace std;
 
@@ -35,6 +37,23 @@ public:
             }
         }
     }
+    void stringSorter(string* ptr_arrayToSort, int lengthOfArrayToSort)
+    {
+        for(int i = 0; i < lengthOfArrayToSort; i++)
+        {
+            string* ptr_lesserElement = ptr_arrayToSort +i;
+            int lesserElementsFirstCharAsciiValue = int(ptr_lesserElement->at(0));
+            for(int j = i +1; j < lengthOfArrayToSort; j++)
+            {
+                int currentElementsFirstCharAsciiValue = int((ptr_arrayToSort +j)->at(0));
+                if(currentElementsFirstCharAsciiValue < lesserElementsFirstCharAsciiValue)
+                    ptr_lesserElement = ptr_arrayToSort +j;
+            }
+            string temp = *ptr_lesserElement;
+            *ptr_lesserElement = *(ptr_arrayToSort +i);
+            *(ptr_arrayToSort +i) = temp;
+        }
+    }
 
 private:
     void swapElementsOfArray(int* ptr_element1, int* ptr_element2)
@@ -48,11 +67,10 @@ private:
 int main()
 {
     int lengthOfArray = 6;
-    int arr1[lengthOfArray] = {85,85,86,88,10,1};
+    string arr1[lengthOfArray] = {"b","A","d","c","z","a"};
 
     arraySorters myObjct;
-    myObjct.insertionSort(arr1, lengthOfArray);
-
+    myObjct.stringSorter(arr1, lengthOfArray);
 
     for(int i = 0; i < lengthOfArray; i ++)
         cout << arr1[i] << " ";
