@@ -37,6 +37,33 @@ public:
             }
         }
     }
+    void mySorter(int* ptr_arrayToSort, int lengthOfArrayToSort)
+    {
+        for(int i = 0; i < int(lengthOfArrayToSort/2); i++)
+        {
+            int* ptr_lesserNumber = ptr_arrayToSort +i;
+            int* ptr_greaterNumber = ptr_lesserNumber;
+            for(int j = i +1; j < lengthOfArrayToSort -i; j++)
+            {
+                int* ptr_currentNumber = ptr_arrayToSort +j;
+                if(*ptr_currentNumber < *ptr_lesserNumber)
+                    ptr_lesserNumber = ptr_currentNumber;
+                else if(*ptr_currentNumber > *ptr_greaterNumber)
+                    ptr_greaterNumber = ptr_currentNumber;
+            }
+            int* ptr_greaterSideBoundary = ptr_arrayToSort +(lengthOfArrayToSort -1 -i);
+            if(ptr_lesserNumber == ptr_greaterSideBoundary && ptr_greaterNumber == ptr_arrayToSort +i)
+                swapElementsOfArray(ptr_greaterNumber, ptr_greaterSideBoundary);
+            else if(ptr_greaterNumber == ptr_arrayToSort +i)
+            {
+                swapElementsOfArray(ptr_greaterNumber, ptr_greaterSideBoundary);
+                swapElementsOfArray(ptr_lesserNumber, ptr_arrayToSort +i);
+            } else {
+                swapElementsOfArray(ptr_lesserNumber, ptr_arrayToSort +i);
+                swapElementsOfArray(ptr_greaterNumber, ptr_greaterSideBoundary);
+            }
+        }
+    }
     void stringSorter(string* ptr_arrayToSort, int lengthOfArrayToSort)
     {
         for(int i = 0; i < lengthOfArrayToSort; i++)
@@ -66,10 +93,10 @@ private:
 int main()
 {
     int lengthOfArray = 6;
-    string arr1[lengthOfArray] = {"A","andres","d","?","Bel","a"};
+    int arr1[lengthOfArray] = {6,2,1,4,5,3}; // 3,5,4,1,2,6
 
     arraySorters myObjct;
-    myObjct.stringSorter(arr1, lengthOfArray);
+    myObjct.mySorter(arr1, lengthOfArray);
 
     for(int i = 0; i < lengthOfArray; i ++)
         cout << arr1[i] << " ";
