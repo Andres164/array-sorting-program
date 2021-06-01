@@ -42,12 +42,11 @@ public:
         for(int i = 0; i < lengthOfArrayToSort; i++)
         {
             string* ptr_lesserElement = ptr_arrayToSort +i;
-            int lesserElementsFirstCharAsciiValue = int(ptr_lesserElement->at(0));
             for(int j = i +1; j < lengthOfArrayToSort; j++)
             {
-                int currentElementsFirstCharAsciiValue = int((ptr_arrayToSort +j)->at(0));
-                if(currentElementsFirstCharAsciiValue < lesserElementsFirstCharAsciiValue)
-                    ptr_lesserElement = ptr_arrayToSort +j;
+                string* ptr_currentElement = ptr_arrayToSort +j;
+                if(*ptr_currentElement < *ptr_lesserElement)
+                    ptr_lesserElement = ptr_currentElement;
             }
             string temp = *ptr_lesserElement;
             *ptr_lesserElement = *(ptr_arrayToSort +i);
@@ -67,7 +66,7 @@ private:
 int main()
 {
     int lengthOfArray = 6;
-    string arr1[lengthOfArray] = {"b","A","d","c","z","a"};
+    string arr1[lengthOfArray] = {"A","andres","d","?","Bel","a"};
 
     arraySorters myObjct;
     myObjct.stringSorter(arr1, lengthOfArray);
